@@ -1,0 +1,14 @@
+version: '2.1'
+
+services:
+
+  database:
+    image: mysql:latest
+    ports:
+      - '3306:3306'
+    env_file:
+      - ./src/main/resources/datasource.properties
+    volumes:
+      - ../db:/var/lib/mysql
+    command: [ "--log_bin_trust_function_creators=1" ]
+    container_name: mysqldb
