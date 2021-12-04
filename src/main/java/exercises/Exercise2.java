@@ -10,18 +10,13 @@ import java.util.Scanner;
 
 public class Exercise2 {
 
-    /**
-     * Bootstrap the application and inject dependencies
-     */
     public static void main(String[] args) {
+        // Bootstrap the application and inject dependencies
         StudentRepository studentRepository = new StudentJdbcRepository(new HikariConnectionPool());
-        modifyStudentNameProgram(studentRepository);
+        start(studentRepository);
     }
 
-    /**
-     * Program entrypoint
-     */
-    private static void modifyStudentNameProgram(StudentRepository studentRepository) {
+    private static void start(StudentRepository studentRepository) {
         Scanner reader = new Scanner(System.in);
 
         System.out.println("Escribe el DNI del alumno que deseas modificar");

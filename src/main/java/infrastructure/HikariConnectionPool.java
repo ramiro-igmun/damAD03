@@ -9,6 +9,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * Encapsulates a singleton HikariDataSource. All instances share the same datasource from where the
+ * connections are fetched.
+ */
 public class HikariConnectionPool implements ConnectionPool {
 
     private static HikariDataSource ds;

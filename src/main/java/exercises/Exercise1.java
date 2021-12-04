@@ -10,18 +10,13 @@ import java.util.List;
 
 public class Exercise1 {
 
-    /**
-     *  Bootstrap the application and inject dependencies;
-     */
     public static void main(String[] args) {
+        // Bootstrap the application and inject dependencies
         StudentRepository studentRepository = new StudentJdbcRepository(new HikariConnectionPool());
-        printStudentsProgram(studentRepository);
+        start(studentRepository);
     }
 
-    /**
-     * Program entrypoint
-     */
-    private static void printStudentsProgram(StudentRepository studentRepository) {
+    private static void start(StudentRepository studentRepository) {
         List<Student> students = studentRepository.findAll();
         for (Student student : students) {
             System.out.println(student.getFullName());

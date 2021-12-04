@@ -50,6 +50,11 @@ public class Student {
         grades.add(gr);
     }
 
+    /**
+     * Returns the grades of the student as an unmodifiableList.
+     * This method should be used as readonly
+     * @return an unmodifiableList of the grades
+     */
     public List<Grade> getGrades() {
         return Collections.unmodifiableList(grades);
     }

@@ -5,6 +5,10 @@ import org.vibur.dbcp.ViburDBCPDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Encapsulates a singleton ViburDBCPDataSource. All instances share the same datasource from where the
+ * connections are fetched.
+ */
 public class ViburConnectionPool implements ConnectionPool{
 
     private static ViburDBCPDataSource ds;

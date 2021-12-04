@@ -5,8 +5,13 @@ import subject.domain.Subject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
+/**
+ * Maps database query result sets to {@link Subject} entities
+ */
 public class SubjectMapper implements EntityMapper<Subject, ResultSet> {
 
     @Override

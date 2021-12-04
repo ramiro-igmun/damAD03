@@ -2,6 +2,7 @@ package exercises;
 
 import infrastructure.ConnectionPool;
 import infrastructure.HikariConnectionPool;
+import infrastructure.ViburConnectionPool;
 import student.application.GradingService;
 import student.domain.Student;
 import student.domain.StudentRepository;
@@ -16,21 +17,16 @@ import java.util.Scanner;
 
 public class Exercise3 {
 
-    /**
-     * Bootstrap the application and inject dependencies
-     */
     public static void main(String[] args) {
+        // Bootstrap the application and inject dependencies
         ConnectionPool connectionPool = new HikariConnectionPool();
         StudentRepository studentRepository = new StudentJdbcRepository(connectionPool);
         SubjectRepository subjectRepository = new SubjectJdbcRepository(connectionPool);
 
-        modifyGradeProgram(studentRepository, subjectRepository);
+        start(studentRepository, subjectRepository);
     }
 
-    /**
-     * Program entrypoint
-     */
-    private static void modifyGradeProgram(StudentRepository studentRepository, SubjectRepository subjectRepository) {
+    private static void start(StudentRepository studentRepository, SubjectRepository subjectRepository) {
         Scanner reader = new Scanner(System.in);
         GradingService gradingService = new GradingService(studentRepository);
 

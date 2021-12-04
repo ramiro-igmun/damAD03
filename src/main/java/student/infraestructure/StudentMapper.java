@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * Maps database query result sets to {@link Student} entities
+ */
 public class StudentMapper implements EntityMapper<Student, ResultSet> {
 
     @Override

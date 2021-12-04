@@ -1,9 +1,12 @@
 package subject.domain;
 
-import subject.domain.Subject;
+import student.domain.Student;
 
 import java.util.List;
 
+/**
+ * Allows access to the {@link Subject} datasource and allows query operations on it.
+ */
 public interface SubjectRepository {
     List<Subject> findAll();
 }
