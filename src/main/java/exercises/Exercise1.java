@@ -1,13 +1,10 @@
 package exercises;
 
-import student.application.StudentService;
-import student.domain.Grade;
-import student.domain.Student;
 import infrastructure.HikariConnectionPool;
-import student.infraestructure.StudentJdbcRepository;
+import student.application.StudentService;
 import student.domain.StudentRepository;
-
-import java.util.List;
+import student.infraestructure.StudentJdbcRepository;
+import ui.ListStudentsTui;
 
 public class Exercise1 {
 
@@ -17,18 +14,10 @@ public class Exercise1 {
     public static void main(String[] args) {
         StudentRepository studentRepository = new StudentJdbcRepository(new HikariConnectionPool());
         StudentService service = new StudentService(studentRepository);
-        start(service);
+        ListStudentsTui app = new ListStudentsTui(service);
+
+        app.start();
     }
 
-    private static void start(StudentService studentService) {
-        List<Student> students = studentService.findAll();
-        for (Student student : students) {
-            System.out.println(student.getFullName());
-            System.out.println("------------------------------");
-            for (Grade grade : student.getGrades()) {
-                System.out.printf("%-5s%10d\n", grade.getSubjectAbr(), grade.getGrade());
-            }
-            System.out.println();
-        }
-    }
+
 }
