@@ -4,17 +4,30 @@ import student.domain.Grade;
 import student.domain.Student;
 import student.domain.StudentRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
  * Service to manage the students' grades creation
  */
-public class GradingService {
+public class StudentService {
 
     private final StudentRepository studentRepository;
 
-    public GradingService(StudentRepository studentRepository) {
+    public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
+    }
+    
+    public Optional<Student> findByDni(String dni) {
+    	return studentRepository.findByDni(dni);
+    }
+    
+    public List<Student> findAll() {
+    	return studentRepository.findAll();
+    }
+    
+    public int  updateStudentName(String dni, String fullName) {
+    	return studentRepository.updateStudentName(dni, fullName);
     }
 
     /**

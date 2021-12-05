@@ -1,5 +1,6 @@
 package exercises;
 
+import student.application.StudentService;
 import student.domain.Student;
 import infrastructure.HikariConnectionPool;
 import student.infraestructure.StudentJdbcRepository;
@@ -9,19 +10,22 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class Exercise2 {
-
+	
+	/**
+	 * Bootstrap the application and start the program loop
+	 */
     public static void main(String[] args) {
-        // Bootstrap the application and inject dependencies
         StudentRepository studentRepository = new StudentJdbcRepository(new HikariConnectionPool());
-        start(studentRepository);
+        StudentService service = new StudentService(studentRepository);
+        start(service);
     }
 
-    private static void start(StudentRepository studentRepository) {
+    private static void start(StudentService studentService) {
         Scanner reader = new Scanner(System.in);
 
         System.out.println("Escribe el DNI del alumno que deseas modificar");
         String dni = reader.nextLine();
-        Optional<Student> optionalStudent = studentRepository.findByDni(dni);
+        Optional<Student> optionalStudent = studentService.findByDni(dni);
 
         if (optionalStudent.isEmpty()) {
             System.err.println("No existe ningún alumno con el DNI seleccionado");
@@ -34,7 +38,7 @@ public class Exercise2 {
         System.out.println("Escribe le nuevo nombre para el alumno");
         String newName = reader.nextLine();
 
-        int rowsModified = studentRepository.updateStudentName(dni, newName);
+        int rowsModified = studentService.updateStudentName(dni, newName);
         if (rowsModified == 1) {
             System.out.println("Alumno modificado correctamente");
         } else {

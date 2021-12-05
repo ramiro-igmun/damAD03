@@ -1,5 +1,6 @@
 package exercises;
 
+import student.application.StudentService;
 import student.domain.Grade;
 import student.domain.Student;
 import infrastructure.HikariConnectionPool;
@@ -10,14 +11,17 @@ import java.util.List;
 
 public class Exercise1 {
 
+	/**
+	 * Bootstrap the application and start the program loop
+	 */
     public static void main(String[] args) {
-        // Bootstrap the application and inject dependencies
         StudentRepository studentRepository = new StudentJdbcRepository(new HikariConnectionPool());
-        start(studentRepository);
+        StudentService service = new StudentService(studentRepository);
+        start(service);
     }
 
-    private static void start(StudentRepository studentRepository) {
-        List<Student> students = studentRepository.findAll();
+    private static void start(StudentService studentService) {
+        List<Student> students = studentService.findAll();
         for (Student student : students) {
             System.out.println(student.getFullName());
             System.out.println("------------------------------");
