@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implementation of StudentRepository for relational database connection
+ */
 public class StudentJdbcRepository implements StudentRepository {
 
     private final StudentMapper studentMapper = new StudentMapper();
@@ -22,7 +25,9 @@ public class StudentJdbcRepository implements StudentRepository {
     public Optional<Student> findByDni(String dni) {
         try (Connection connection = connectionPool.getConnection()) {
 
-            String query = "SELECT alumnos.dni, apenom, pobla, telef, n.cod, abreviatura, nota FROM alumnos LEFT JOIN (notas n JOIN asignaturas a on n.cod = a.cod) on alumnos.dni = n.dni WHERE alumnos.dni = ? ORDER BY apenom DESC";
+            String query = "SELECT alumnos.dni, apenom, pobla, telef, n.cod, abreviatura, nota FROM alumnos "
+            		+ "LEFT JOIN (notas n JOIN asignaturas a on n.cod = a.cod) on alumnos.dni = n.dni "
+            		+ "WHERE alumnos.dni = ? ORDER BY apenom DESC";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, dni);
 
@@ -39,7 +44,8 @@ public class StudentJdbcRepository implements StudentRepository {
     public List<Student> findAll() {
         try (Connection connection = connectionPool.getConnection()) {
 
-            String query = "SELECT alumnos.dni, apenom, pobla, telef, n.cod, abreviatura, nota FROM alumnos LEFT JOIN (notas n JOIN asignaturas a on n.cod = a.cod) on alumnos.dni = n.dni ORDER BY apenom DESC";
+            String query = "SELECT alumnos.dni, apenom, pobla, telef, n.cod, abreviatura, nota FROM alumnos"
+            		+ " LEFT JOIN (notas n JOIN asignaturas a on n.cod = a.cod) on alumnos.dni = n.dni ORDER BY apenom DESC";
             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery(query);

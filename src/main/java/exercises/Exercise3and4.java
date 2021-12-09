@@ -10,7 +10,7 @@ import subject.domain.SubjectRepository;
 import subject.infraestructure.SubjectJdbcRepository;
 import ui.ModifyGradeTui;
 
-public class Exercise3 {
+public class Exercise3and4 {
 
 	/**
 	 * Bootstrap the application and start the program loop

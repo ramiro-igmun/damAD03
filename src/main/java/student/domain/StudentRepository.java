@@ -9,18 +9,13 @@ import java.util.Optional;
 public interface StudentRepository {
 
     Optional<Student> findByDni(String dni);
-
     List<Student> findAll();
-
     /**
      * @return the number of rows updated (either 0 or 1)
      */
     int updateStudentName(String dni, String fullName);
-
     void addNewGrade(String dni, int code, int grade);
-
     void modifyGrade(String dni, int code, int grade);
-
     /**
      * @return a string with the confirmation or error message
      */

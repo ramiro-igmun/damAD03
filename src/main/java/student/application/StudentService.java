@@ -26,6 +26,9 @@ public class StudentService {
     	return studentRepository.findAll();
     }
     
+    /**
+     * @return 1 if the modification has been successful 0 if there have been errors
+     */
     public int  updateStudentName(String dni, String fullName) {
     	return studentRepository.updateStudentName(dni, fullName);
     }
@@ -46,11 +49,10 @@ public class StudentService {
                 if (studentGrade.getCode() == code) {
                     studentRepository.modifyGrade(dni, code, grade);
                     return "La nota se ha modificado";
-                } else {
-                    studentRepository.addNewGrade(dni, code, grade);
-                    return "La nota se ha añadido";
-                }
+                } 
             }
+            studentRepository.addNewGrade(dni, code, grade);
+            return "La nota se ha añadido";
         }
         return "El dni no corresponde a ningún estudiante";
     }

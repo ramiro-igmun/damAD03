@@ -35,7 +35,7 @@ public class StudentMapper implements EntityMapper<Student, ResultSet> {
 
     @Override
     public List<Student> toEntityList(ResultSet data) {
-        Map<String, Student> studentMap = new HashMap<>();
+        Map<String, Student> studentMap = new LinkedHashMap<>();
         try {
             while (data.next()) {
                 Student student;

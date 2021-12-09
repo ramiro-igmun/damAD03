@@ -5,7 +5,7 @@ import infrastructure.ViburConnectionPool;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class Exercise4 {
+public class Exercise5 {
 
     public static void main(String[] args) {
         Connection connection;

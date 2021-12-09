@@ -47,6 +47,8 @@ public class ModifyGradeTui {
         System.out.println("Escribe la nota del alumno:");
         int grade = reader.nextInt();
 
+        //For alternative Exercise4 uncomment next line and comment the.
         System.out.println(studentService.addGrade(dni, code, grade, true));
+        //System.out.println(studentService.addGrade(dni, code, grade));
     }
 }
